@@ -79,17 +79,6 @@ EOT;
 	    
         # prepare to keep all records for sorting
         $allLinks = array();
-        # remove "FAST/Docs/"
-        /**
-         * @todo start: make html work when possible. for now use wikitext because it works easily.
-    	foreach ($res as $category) {
-    	    $title = $category->cl_sortkey;
-    	    $linkText = substr($title, stripos($title, $removeThis)+strlen($removeThis));
-            $link = htmlentities('/index.php?title=Category:' . $title);
-    	    // $wgOut->addHTML(sprintf('<a href="%s" title="%s">%s</a> | ', $link, $title, $linkText));
-    	    $allLinks[$linkText] = sprintf('<a href="%s" title="%s">%s</a> | ', $link, $title, $linkText);
-    	}
-    	 */
 	    foreach ($res as $namespace => $resObj) {
 	    	# ensure category is pre-pended to link
 	    	$prependText = '';
@@ -102,7 +91,6 @@ EOT;
 	        	if (stripos($title, $removeThisFromTextStart) === 0) {
 	        		$linkText = substr($title, stripos($title, $removeThisFromTextStart)+strlen($removeThisFromTextStart));
 	        	}
-	        	// $wgOut->addHTML(sprintf('<a href="%s" title="%s">%s</a> | ', $link, $title, $linkText));
 	        	$allLinks[$linkText] = sprintf('[[%s|%s]]', $title, $linkText );
 	        }
 	    }
